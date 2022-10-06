@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import HomeScreen from "./src/screens/HomeScreen";
 import DetailsScreen from "./src/screens/DetailsScreen";
 import ImageScreen from "./src/screens/ImageScreen";
+import SearchScreen from "./src/screens/SearchScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,12 @@ const App = () => {
         <Stack.Screen 
           name="Home_to_Details"
           component={DetailsScreen}
+          options={({route})=> ({title: route.params.movie.title})}
+        />
+        <Stack.Screen 
+          name="Home_to_Search"
+          component={SearchScreen}
+          // options={{title: 'Search'}}
           options={({route})=> ({title: route.params.movie.title})}
         />
         <Stack.Screen 

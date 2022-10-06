@@ -1,11 +1,24 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, TextInput } from "react-native";
 
 const HomeScreen = ({navigation, route}) => {
     console.log(route);
+    const [text, onChangeText] = useState('');
     return (
         <View style={styles.mainView}>
-            <Text>Home Screen</Text>
+            <TextInput
+                style={styles.input}
+                onChangeText={text => onChangeText(text)}
+                value={text}
+            />
+            <TouchableOpacity 
+                style={styles.touchableSearchView}
+                onPress={()=> navigation.navigate('Home_to_Search', { movie: {
+                    title: text,
+                }})}
+            >
+                <View><Text style={styles.touchableSearchText}>Search Movie</Text></View>
+            </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.touchableView}
                 onPress={()=> navigation.navigate('Home_to_Details', { movie: {
@@ -61,6 +74,31 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
+    },
+    touchableSearchView: {
+        marginBottom: 25,
+        width: 150,
+        height: 50,
+        alignItems:'center',
+        backgroundColor: 'red',
+        borderWidth: 0,
+        borderRadius: 5,
+    },
+    touchableSearchText: {
+        textAlign: 'center',
+        paddingTop: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    input: {
+        height: 40,
+        width: '80%',
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+        textAlign: 'center',
+        color: '#000',
     }
 });
 
