@@ -2,13 +2,12 @@ import React, {useEffect, useState} from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 
 const DetailsScreen = ({navigation, route}) => {
-    // console.log(route);
     const movie = route.params.movie;
     const [movieDetails, setMovieDetails] = useState(null);
 
     useEffect(() => {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://www.omdbapi.com/?apikey=4803e151&t=Star+Wars&y=1977');
+        xhr.open('GET', `http://www.omdbapi.com/?apikey=4803e151&t=${movie.title}&y=${movie.release}`);
         xhr.send();
         xhr.onload = () => {
             if(xhr.status === 200){
