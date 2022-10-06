@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 
 const HomeScreen = ({navigation, route}) => {
     console.log(route);
@@ -16,7 +16,7 @@ const HomeScreen = ({navigation, route}) => {
             >
                 <View><Text style={styles.touchableText}>Star Wars</Text></View>
             </TouchableOpacity>
-            <TouchableOpacity 
+            <TouchableHighlight 
                 style={styles.touchableView} 
                 onPress={()=> navigation.navigate('Home_to_Details', { movie: {
                     title: "Black Panther",
@@ -25,8 +25,8 @@ const HomeScreen = ({navigation, route}) => {
                 }})}
             >
                 <View><Text style={styles.touchableText}>Black Panther</Text></View>
-            </TouchableOpacity>
-            <TouchableOpacity 
+            </TouchableHighlight>
+            <TouchableHighlight 
                 style={styles.touchableView}
                 onPress={()=> navigation.navigate('Home_to_Details', { movie: {
                     title: "The Matrix",
@@ -35,7 +35,7 @@ const HomeScreen = ({navigation, route}) => {
                 }})}
             >
                 <View><Text style={styles.touchableText}>The Matrix</Text></View>
-            </TouchableOpacity>
+            </TouchableHighlight>
         </View>
     );
 }
