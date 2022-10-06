@@ -1,9 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 
 const DetailsScreen = ({navigation, route}) => {
     console.log(route);
     const movie = route.params.movie;
+    useEffect(() => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://www.omdbapi.com/?apikey=4803e151&t=Star+Wars&y=1977');
+        xhr.send();
+        xhr.onload = () => {
+            if(xhr.status === 200){
+                console.log(xhr.responseText);
+            }else{
+                console.log(`HTTP Request Failed ${xhr.status}`);
+            }
+        };
+        xhr.onerror = () => {
+            console.log("Error");
+        };
+    }, []);
     return (
         <View style={styles.mainView}>
             <Text style={{fontSize: 20}}>{movie.title} ({movie.release})</Text>
